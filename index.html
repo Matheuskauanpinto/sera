@@ -10,6 +10,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 100px;
+            overflow: hidden; /* Para esconder as imagens que transbordam a tela */
         }
 
         button {
@@ -19,6 +20,26 @@
             padding: 10px 20px;
             font-size: 18px;
             cursor: pointer;
+        }
+
+        /* Estilo para os corações */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(800px);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -49,6 +70,11 @@
             const welcomeMessage = document.createElement("p");
             welcomeMessage.textContent = "Bem-vinda à minha vida";
             document.body.appendChild(welcomeMessage);
+
+            // Create and animate heart shapes
+            for (let i = 0; i < 50; i++) {
+                createHeart();
+            }
         });
 
         naoButton.addEventListener("click", () => {
@@ -57,6 +83,19 @@
             naoButton.style.left = Math.random() * (window.innerWidth - 100) + "px";
             naoButton.style.top = Math.random() * (window.innerHeight - 100) + "px";
         });
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️"; // Adicione o emoji de coração aqui
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            document.body.appendChild(heart);
+
+            // Remova o elemento de coração após a animação
+            heart.addEventListener("animationend", () => {
+                heart.remove();
+            });
+        }
     </script>
 </body>
 </html>
