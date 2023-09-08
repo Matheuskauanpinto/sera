@@ -31,18 +31,6 @@
             animation-duration: 10s;
         }
 
-        .heart-border {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            font-size: 40px;
-            opacity: 0.5;
-            color: red;
-            transform: scale(0);
-            animation-duration: 3s;
-            animation-timing-function: ease-out;
-        }
-
         /* Estilo para o coração principal */
         .heart-main {
             position: absolute;
@@ -106,7 +94,7 @@
             document.body.appendChild(welcomeMessage);
 
             // Create and animate heart shapes forming a heart around text
-            createHeartBorder("Quer Namorar Comigo?");
+            createHeartMain("Quer Namorar Comigo?");
             createHeartMain("Bem-vinda à minha vida");
         });
 
@@ -131,7 +119,7 @@
             });
         }
 
-        function createHeartBorder(text) {
+        function createHeartMain(text) {
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2;
             const radius = 100;
@@ -139,27 +127,10 @@
 
             for (let i = 0; i < numHearts; i++) {
                 const angle = (i / numHearts) * (2 * Math.PI);
-                const x = centerX + radius * Math.cos(angle);
-                const y = centerY + radius * Math.sin(angle);
+                const x = centerX + radius * 16 * Math.pow(Math.sin(angle), 3);
+                const y = centerY - radius * (13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
                 createHeart(x, y);
             }
-        }
-
-        function createHeartMain(text) {
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-
-            const heartMain = document.createElement("div");
-            heartMain.classList.add("heart-main");
-            heartMain.innerHTML = "❤️"; // Adicione o emoji de coração aqui
-            heartMain.style.left = centerX - 30 + "px"; // -30 para centralizar o coração em torno do texto
-            heartMain.style.top = centerY - 30 + "px"; // -30 para centralizar o coração em torno do texto
-            document.body.appendChild(heartMain);
-
-            // Remova o elemento de coração principal após a animação
-            heartMain.addEventListener("animationend", () => {
-                heartMain.remove();
-            });
         }
     </script>
 </body>
