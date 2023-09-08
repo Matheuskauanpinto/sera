@@ -10,7 +10,6 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 100px;
-            overflow: hidden; /* Para esconder as imagens que transbordam a tela */
         }
 
         button {
@@ -20,48 +19,6 @@
             padding: 10px 20px;
             font-size: 18px;
             cursor: pointer;
-        }
-
-        /* Estilo para os corações */
-        .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            font-size: 20px;
-            animation-duration: 10s;
-        }
-
-        /* Estilo para o coração principal */
-        .heart-main {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            font-size: 60px;
-            opacity: 0.8;
-            color: red;
-            transform: scale(0);
-            animation-duration: 4s;
-            animation-timing-function: ease-out;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(0) rotate(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        @keyframes grow {
-            0% {
-                transform: scale(0);
-            }
-            100% {
-                transform: scale(1);
-            }
         }
     </style>
 </head>
@@ -92,10 +49,6 @@
             const welcomeMessage = document.createElement("p");
             welcomeMessage.textContent = "Bem-vinda à minha vida";
             document.body.appendChild(welcomeMessage);
-
-            // Create and animate heart shapes forming a heart around text
-            createHeartMain("Quer Namorar Comigo?");
-            createHeartMain("Bem-vinda à minha vida");
         });
 
         naoButton.addEventListener("click", () => {
@@ -104,34 +57,6 @@
             naoButton.style.left = Math.random() * (window.innerWidth - 100) + "px";
             naoButton.style.top = Math.random() * (window.innerHeight - 100) + "px";
         });
-
-        function createHeart(x, y) {
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️"; // Adicione o emoji de coração aqui
-            heart.style.left = x + "px";
-            heart.style.top = y + "px";
-            document.body.appendChild(heart);
-
-            // Remova o elemento de coração após a animação
-            heart.addEventListener("animationend", () => {
-                heart.remove();
-            });
-        }
-
-        function createHeartMain(text) {
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-            const radius = 100;
-            const numHearts = 36; // Altere o número de corações conforme necessário para ajustar a forma
-
-            for (let i = 0; i < numHearts; i++) {
-                const angle = (i / numHearts) * (2 * Math.PI);
-                const x = centerX + radius * 16 * Math.pow(Math.sin(angle), 3);
-                const y = centerY - radius * (13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
-                createHeart(x, y);
-            }
-        }
     </script>
 </body>
 </html>
