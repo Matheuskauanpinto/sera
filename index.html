@@ -44,6 +44,11 @@
             // Hide the buttons
             simButton.style.display = "none";
             naoButton.style.display = "none";
+
+            // Display the welcome message
+            const welcomeMessage = document.createElement("p");
+            welcomeMessage.textContent = "Bem-vinda à minha vida";
+            document.body.appendChild(welcomeMessage);
         });
 
         naoButton.addEventListener("click", () => {
