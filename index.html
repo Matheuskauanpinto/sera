@@ -28,6 +28,14 @@
     <button id="nao">Não</button>
     <div id="mensagem" style="display: none;">Obrigado!</div>
 
+    <!-- Formspree form -->
+    <form action="https://formspree.io/your-formspree-id" method="POST">
+        <input type="text" name="name" placeholder="Your Name">
+        <input type="email" name="email" placeholder="Your Email">
+        <input type="text" name="response" value="Sim" id="sim-response">
+        <button type="submit">Submit</button>
+    </form>
+
     <script>
         const simButton = document.getElementById("sim");
         const naoButton = document.getElementById("nao");
