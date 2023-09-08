@@ -29,28 +29,34 @@
     <div id="mensagem" style="display: none;">Obrigado!</div>
 
     <!-- Formspree form -->
-    <form action="https://formspree.io/your-formspree-id" method="POST">
+    <form id="response-form" action="https://formspree.io/your-formspree-id" method="POST">
         <input type="text" name="name" placeholder="Your Name">
         <input type="email" name="email" placeholder="Your Email">
-        <input type="text" name="response" value="Sim" id="sim-response">
-        <button type="submit">Submit</button>
+        <input type="text" name="response" id="response-input">
+        <button type="submit" style="display: none;">Submit</button>
     </form>
 
     <script>
         const simButton = document.getElementById("sim");
         const naoButton = document.getElementById("nao");
         const mensagemDiv = document.getElementById("mensagem");
+        const responseInput = document.getElementById("response-input");
+        const responseForm = document.getElementById("response-form");
 
         simButton.addEventListener("click", () => {
             mensagemDiv.style.display = "block";
             simButton.style.display = "none";
             naoButton.style.display = "none";
+            responseInput.value = "Sim";
+            responseForm.submit();
         });
 
         naoButton.addEventListener("click", () => {
-            naoButton.style.position = "absolute";
-            naoButton.style.left = Math.random() * (window.innerWidth - 100) + "px";
-            naoButton.style.top = Math.random() * (window.innerHeight - 100) + "px";
+            mensagemDiv.style.display = "block";
+            simButton.style.display = "none";
+            naoButton.style.display = "none";
+            responseInput.value = "Não";
+            responseForm.submit();
         });
     </script>
 </body>
