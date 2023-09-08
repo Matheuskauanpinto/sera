@@ -26,28 +26,20 @@
     <h1>Quer namorar comigo?</h1>
     <button id="sim">Sim</button>
     <button id="nao">Não</button>
+    <div id="mensagem" style="display: none;">Obrigado!, Bem vinda a minha vida</div>
 
     <script>
         const simButton = document.getElementById("sim");
         const naoButton = document.getElementById("nao");
+        const mensagemDiv = document.getElementById("mensagem");
 
         simButton.addEventListener("click", () => {
-            // Send a message to Formspree (replace with your Formspree endpoint)
-            fetch('https://formspree.io/f/mrgwkjvv', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: 'Sim' }),
-            });
-
-            // Hide the buttons
+            mensagemDiv.style.display = "block";
             simButton.style.display = "none";
             naoButton.style.display = "none";
         });
 
         naoButton.addEventListener("click", () => {
-            // Move the "Não" button to a random position
             naoButton.style.position = "absolute";
             naoButton.style.left = Math.random() * (window.innerWidth - 100) + "px";
             naoButton.style.top = Math.random() * (window.innerHeight - 100) + "px";
