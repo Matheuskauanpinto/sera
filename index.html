@@ -29,10 +29,8 @@
     <div id="mensagem" style="display: none;">Obrigado!</div>
 
     <!-- Formspree form -->
-    <form id="response-form" action="https://formspree.io/f/mrgwkjvv" method="POST">
-        <input type="text" name="name" placeholder="Your Name">
-        <input type="email" name="email" placeholder="Your Email">
-        <input type="text" name="response" id="response-input">
+    <form id="response-form" action="https://formspree.io/your-formspree-id" method="POST">
+        <input type="text" name="message" id="message-input" style="display: none;">
         <button type="submit" style="display: none;">Submit</button>
     </form>
 
@@ -40,14 +38,14 @@
         const simButton = document.getElementById("sim");
         const naoButton = document.getElementById("nao");
         const mensagemDiv = document.getElementById("mensagem");
-        const responseInput = document.getElementById("response-input");
+        const messageInput = document.getElementById("message-input");
         const responseForm = document.getElementById("response-form");
 
         simButton.addEventListener("click", () => {
             mensagemDiv.style.display = "block";
             simButton.style.display = "none";
             naoButton.style.display = "none";
-            responseInput.value = "Sim";
+            messageInput.value = "Sim";
             responseForm.submit();
         });
 
@@ -55,7 +53,7 @@
             mensagemDiv.style.display = "block";
             simButton.style.display = "none";
             naoButton.style.display = "none";
-            responseInput.value = "Não";
+            messageInput.value = "Não";
             responseForm.submit();
         });
     </script>
