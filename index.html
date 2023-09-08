@@ -31,6 +31,31 @@
             animation-duration: 10s;
         }
 
+        .heart-border {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            font-size: 40px;
+            opacity: 0.5;
+            color: red;
+            transform: scale(0);
+            animation-duration: 3s;
+            animation-timing-function: ease-out;
+        }
+
+        /* Estilo para o coração principal */
+        .heart-main {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            font-size: 60px;
+            opacity: 0.8;
+            color: red;
+            transform: scale(0);
+            animation-duration: 4s;
+            animation-timing-function: ease-out;
+        }
+
         @keyframes fall {
             0% {
                 transform: translateY(0) rotate(0);
@@ -39,6 +64,15 @@
             100% {
                 transform: translateY(100vh) rotate(360deg);
                 opacity: 0;
+            }
+        }
+
+        @keyframes grow {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
             }
         }
     </style>
@@ -71,15 +105,9 @@
             welcomeMessage.textContent = "Bem-vinda à minha vida";
             document.body.appendChild(welcomeMessage);
 
-            // Create and animate heart shapes
-            const interval = setInterval(() => {
-                createHeart();
-            }, 1000); // Cria um coração a cada 1 segundo
-
-            // Pare de criar corações após 10 segundos
-            setTimeout(() => {
-                clearInterval(interval);
-            }, 10000); // 10 segundos
+            // Create and animate heart shapes forming a heart around text
+            createHeartBorder("Quer Namorar Comigo?");
+            createHeartMain("Bem-vinda à minha vida");
         });
 
         naoButton.addEventListener("click", () => {
@@ -89,16 +117,48 @@
             naoButton.style.top = Math.random() * (window.innerHeight - 100) + "px";
         });
 
-        function createHeart() {
+        function createHeart(x, y) {
             const heart = document.createElement("div");
             heart.classList.add("heart");
             heart.innerHTML = "❤️"; // Adicione o emoji de coração aqui
-            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.left = x + "px";
+            heart.style.top = y + "px";
             document.body.appendChild(heart);
 
             // Remova o elemento de coração após a animação
             heart.addEventListener("animationend", () => {
                 heart.remove();
+            });
+        }
+
+        function createHeartBorder(text) {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const radius = 100;
+            const numHearts = 36; // Altere o número de corações conforme necessário para ajustar a forma
+
+            for (let i = 0; i < numHearts; i++) {
+                const angle = (i / numHearts) * (2 * Math.PI);
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+                createHeart(x, y);
+            }
+        }
+
+        function createHeartMain(text) {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            const heartMain = document.createElement("div");
+            heartMain.classList.add("heart-main");
+            heartMain.innerHTML = "❤️"; // Adicione o emoji de coração aqui
+            heartMain.style.left = centerX - 30 + "px"; // -30 para centralizar o coração em torno do texto
+            heartMain.style.top = centerY - 30 + "px"; // -30 para centralizar o coração em torno do texto
+            document.body.appendChild(heartMain);
+
+            // Remova o elemento de coração principal após a animação
+            heartMain.addEventListener("animationend", () => {
+                heartMain.remove();
             });
         }
     </script>
