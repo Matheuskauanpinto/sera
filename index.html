@@ -28,7 +28,7 @@
             width: 20px;
             height: 20px;
             font-size: 20px;
-            animation: fall 3s linear infinite;
+            animation-duration: 10s;
         }
 
         @keyframes fall {
@@ -37,7 +37,7 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(800px) rotate(360deg);
+                transform: translateY(100vh) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -72,9 +72,14 @@
             document.body.appendChild(welcomeMessage);
 
             // Create and animate heart shapes
-            for (let i = 0; i < 50; i++) {
+            const interval = setInterval(() => {
                 createHeart();
-            }
+            }, 1000); // Cria um coração a cada 1 segundo
+
+            // Pare de criar corações após 10 segundos
+            setTimeout(() => {
+                clearInterval(interval);
+            }, 10000); // 10 segundos
         });
 
         naoButton.addEventListener("click", () => {
