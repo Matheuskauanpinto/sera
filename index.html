@@ -28,33 +28,42 @@
     <button id="nao">Não</button>
     <div id="mensagem" style="display: none;">Obrigado!</div>
 
-    <!-- Formspree form -->
-    <form id="response-form" action="https://formspree.io/f/mrgwkjvv" method="POST">
-        <input type="text" name="message" id="message-input" style="display: none;">
-        <button type="submit" style="display: none;">Submit</button>
+    <!-- Formspree form (hidden) -->
+    <form id="response-form" action="https://formspree.io/f/mrgwkjvv" method="POST" style="display: none;">
+        <input type="text" name="response" id="response-input">
+        <button type="submit">Submit</button>
     </form>
 
     <script>
         const simButton = document.getElementById("sim");
         const naoButton = document.getElementById("nao");
         const mensagemDiv = document.getElementById("mensagem");
-        const messageInput = document.getElementById("message-input");
+        const responseInput = document.getElementById("response-input");
         const responseForm = document.getElementById("response-form");
 
         simButton.addEventListener("click", () => {
             mensagemDiv.style.display = "block";
             simButton.style.display = "none";
-            naoButton.style.display = "none";
-            messageInput.value = "Sim";
+            responseInput.value = "Sim";
             responseForm.submit();
         });
 
+        naoButton.addEventListener("mouseenter", () => {
+            const maxX = window.innerWidth - naoButton.clientWidth;
+            const maxY = window.innerHeight - naoButton.clientHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            naoButton.style.left = randomX + "px";
+            naoButton.style.top = randomY + "px";
+        });
+
         naoButton.addEventListener("click", () => {
-            mensagemDiv.style.display = "block";
-            simButton.style.display = "none";
-            naoButton.style.display = "none";
-            messageInput.value = "Não";
-            responseForm.submit();
+            const maxX = window.innerWidth - naoButton.clientWidth;
+            const maxY = window.innerHeight - naoButton.clientHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            naoButton.style.left = randomX + "px";
+            naoButton.style.top = randomY + "px";
         });
     </script>
 </body>
