@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Quer Namorar Comigo?</title>
@@ -45,10 +45,10 @@
             simButton.style.display = "none";
             naoButton.style.display = "none";
 
-            // Display the welcome message
-            const welcomeMessage = document.createElement("p");
-            welcomeMessage.textContent = "Bem-vinda à minha vida";
-            document.body.appendChild(welcomeMessage);
+            // Display a romantic message
+            const romanticMessage = document.createElement("p");
+            romanticMessage.innerHTML = "Bem-vinda à minha vida ❤️<br> Você ilumina meu mundo como as estrelas iluminam o céu. 🌟 Juntos, vamos construir uma história de amor única e eterna. 💑";
+            document.body.appendChild(romanticMessage);
         });
 
         naoButton.addEventListener("click", () => {
