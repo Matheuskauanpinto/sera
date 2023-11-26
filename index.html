@@ -10,6 +10,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 100px;
+            overflow: hidden; /* Para esconder overflow e garantir que os corações não apareçam fora da tela */
         }
 
         button {
@@ -23,19 +24,25 @@
 
         .heart-rain {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             background-image: url('cora.png');
             background-size: contain;
-            animation: heartFall 2s linear infinite;
+            animation: heartFall 4s linear infinite;
+            opacity: 0.7;
         }
 
         @keyframes heartFall {
             0% {
-                transform: translateY(0);
+                transform: translateY(-100vh) translateX(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
             }
             100% {
-                transform: translateY(800px);
+                transform: translateY(120vh) translateX(calc((100vw - 20px) * random()));
+                opacity: 0;
             }
         }
     </style>
@@ -68,7 +75,7 @@
             romanticMessage.innerHTML = "Bem-vinda à minha vida ❤️<br> Você ilumina meu mundo como as estrelas iluminam o céu. 🌟 Juntos, vamos construir uma história de amor única e eterna. 💑";
 
             // Create falling hearts
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 40; i++) {
                 const heart = document.createElement("div");
                 heart.className = "heart-rain";
                 heart.style.left = Math.random() * window.innerWidth + "px";
