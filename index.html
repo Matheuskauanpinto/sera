@@ -20,6 +20,24 @@
             font-size: 18px;
             cursor: pointer;
         }
+
+        .heart-rain {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('cora.png');
+            background-size: contain;
+            animation: heartFall 2s linear infinite;
+        }
+
+        @keyframes heartFall {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(800px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -45,9 +63,18 @@
             simButton.style.display = "none";
             naoButton.style.display = "none";
 
-            // Display a romantic message
+            // Display a romantic message with falling hearts
             const romanticMessage = document.createElement("p");
             romanticMessage.innerHTML = "Bem-vinda à minha vida ❤️<br> Você ilumina meu mundo como as estrelas iluminam o céu. 🌟 Juntos, vamos construir uma história de amor única e eterna. 💑";
+
+            // Create falling hearts
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement("div");
+                heart.className = "heart-rain";
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                document.body.appendChild(heart);
+            }
+
             document.body.appendChild(romanticMessage);
         });
 
